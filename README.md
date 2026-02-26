@@ -14,9 +14,11 @@ requests           2.32.5
 urllib3            2.6.3
 tqdm               4.67.3
 
+
 To run the program, set up the venv first
 python3 -m venv venv
 source venv/bin/activate
+
 
 And then change images to set the range of images you want to download.
 Then run:
