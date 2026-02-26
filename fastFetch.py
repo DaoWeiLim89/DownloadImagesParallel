@@ -21,20 +21,23 @@ def log(status, id, timestamp):
         #print(f"Downloaded: {imagesDownloaded}/{total_images}")
 
 def download_image(id: int):
-    try:
-        # timeout=3 means: wait max 3 seconds
-        response = requests.get(url + str(id), timeout=3, verify=certifi.where())
+    retries = 3
+    for attempt in range(retries):
+        try:
+            # timeout=3 means: wait max 3 seconds
+            response = requests.get(url + str(id), timeout=3, verify=certifi.where())
 
-        with open(f"images/{filename}{id}.jpg", "wb") as f:
-            f.write(response.content)
+            with open(f"images/{filename}{id}.jpg", "wb") as f:
+                f.write(response.content)
 
-        log("SUCCESS", id, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+            log("SUCCESS", id, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+            return True
 
-    except requests.exceptions.Timeout:
-        log("TIMEOUT", id, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        except requests.exceptions.Timeout:
+            log("TIMEOUT", id, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
-    except Exception:
-        log("FAILED", id, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        except Exception:
+            log("FAILED", id, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
 def serialDownload(images):
     start_time = time.perf_counter()
