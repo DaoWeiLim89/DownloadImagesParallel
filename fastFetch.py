@@ -74,6 +74,6 @@ if __name__ == "__main__":
     if os.path.exists("logger.txt"):
         os.remove("logger.txt")
 
-    images = [100, 150]
+    images = [300, 350]
     serialDownload(images)
     parallelDownload(images)
