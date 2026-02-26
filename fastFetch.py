@@ -71,6 +71,7 @@ if __name__ == "__main__":
         os.makedirs("images")
     '''
     
+    # Clear the log file if it exists
     if os.path.exists("logger.txt"):
         os.remove("logger.txt")
 
