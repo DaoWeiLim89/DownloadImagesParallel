@@ -1,0 +1,8 @@
+#!/bin/sh
+'''exec' "/Users/daoweilim/Desktop/Schoolwork/Spring 2026/Operating Systems/assignments/ass2/DownloadImagesParallel/venv/bin/python3.12" "$0" "$@"
+' '''
+import sys
+from tqdm.cli import main
+if __name__ == '__main__':
+    sys.argv[0] = sys.argv[0].removesuffix('.exe')
+    sys.exit(main())
